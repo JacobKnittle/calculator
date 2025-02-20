@@ -84,9 +84,10 @@ function evaluteInput(buttonPress) {
   }
 
   // // assigns a num if operand1 and operator exist
-  // if (operand1 && operator && !operand2 && !isNaN(buttonPress)) {
-  //   operand2 = buttonPress;
-  // }
+  if (operand1 && operator && !isNaN(buttonPress)) {
+    console.log("add onto operand 2");
+    operand2 += buttonPress;
+  }
 }
 // store both number inputs and call the operate function when the user hits the = button
 
