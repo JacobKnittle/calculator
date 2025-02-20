@@ -1,18 +1,60 @@
-// create a function that does addition
 function add(num1, num2) {
   return num1 + num2;
 }
-// create a function that does subtraction
 
-// create a function that does multiplication
+function subtract(num1, num2) {
+  return num1 - num2;
+}
 
-// create a function that does division
+function multiply(num1, num2) {
+  return num1 * num2;
+}
 
-// create three variable two operands and a operator
+function divide(num1, num2) {
+  return num1 / num2;
+}
 
-// create a function operate thate takes the two operands and a operator and calls one of the math functions
+// operands and operator for calculator
+let operand1 = 0;
+let operator = "";
+let operand2 = "";
+
+// create a function operate that takes the two operands and a operator and calls one of the math functions
+
+function operate(operand1, operator, operand2) {
+  switch (operator) {
+    case "+":
+      return add(operand1, operand2);
+    case "-":
+      return subtract(operand1, operand2);
+    case "*":
+      return multiply(operand1, operand2);
+    case "/":
+      return divide(operand1, operand2);
+    default:
+      console.log("ERROR in operate function");
+  }
+}
 
 // create functions that populate the display when you click the buttons on the calculator and store that value in a variable
+
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    console.log(e.srcElement.textContent);
+    let userInput = e.srcElement.textContent;
+    console.log(isNaN(userInput));
+    evaluteInput(userInput);
+  });
+});
+
+// create a function that checks the values of the operands and the operator to see if the input is valid and what variable it should be stored if it is
+
+function evaluteInput(buttonPress) {
+  if (operand1 === 0 && isNaN() == false) {
+    operand1 = +buttonPress;
+  }
+}
 
 // store both number inputs and call the operate function when the user hits the = button
 
