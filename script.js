@@ -1,17 +1,23 @@
+const screen = document.querySelector("input");
+
 function add(num1, num2) {
-  return num1 + num2;
+  console.log(num1 + num2);
+  operand1 = num1 + num2;
 }
 
 function subtract(num1, num2) {
-  return num1 - num2;
+  console.log(num1 - num2);
+  operand1 = num1 - num2;
 }
 
 function multiply(num1, num2) {
-  return num1 * num2;
+  console.log(num1 * num2);
+  operand1 = num1 * num2;
 }
 
 function divide(num1, num2) {
-  return num1 / num2;
+  console.log(num1 / num2);
+  operand1 = (num1 / num2).toFixed(2);
 }
 
 // operands and operator for calculator
@@ -19,9 +25,14 @@ let operand1 = 0;
 let operator = "";
 let operand2 = "";
 
+screen.value = `0  `;
+
 // create a function operate that takes the two operands and a operator and calls one of the math functions
 
 function operate(operand1, operator, operand2) {
+  operand1 = +operand1;
+  operand2 = +operand2;
+
   switch (operator) {
     case "+":
       return add(operand1, operand2);
@@ -43,6 +54,9 @@ buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
     let userInput = e.srcElement.textContent;
     evaluteInput(userInput);
+    // display both operands and the operator in the calculator input box
+
+    screen.value = `${operand1} ${operator} ${operand2}`;
   });
 });
 
@@ -83,24 +97,24 @@ function evaluteInput(buttonPress) {
     operator = buttonPress;
   }
 
-  // // assigns a num if operand1 and operator exist
+  // adds a num to operand2 if operand1 and operator exist
   if (operand1 && operator && !isNaN(buttonPress)) {
     console.log("add onto operand 2");
     operand2 += buttonPress;
   }
+
+  // runs equation with = is pressed an resets operator and operand 2
+  if (operand1 && operator && operand2 && buttonPress === "=") {
+    console.log(operate(operand1, operator, operand2));
+    operator = "";
+    operand2 = "";
+  }
+  // clears calculator
+  if (buttonPress === "AC") {
+    operand1 = 0;
+    operator = "";
+    operand2 = "";
+  }
 }
-// store both number inputs and call the operate function when the user hits the = button
-
-// update the display with the result of the operation when the = sign is pressed
-
-// evaluate one pair of numbers at a time and update the first variable with the result along with then allowing only a next operator
-
-// round answers with long decimals to prevent overflow
-
-// don't allow the = button to work prematurally
-
-// make sure there is a clear button that wipes out all data
 
 // display a error message if the user tries to divide by 0
-
-// prevent a operator from being used twice in a row
