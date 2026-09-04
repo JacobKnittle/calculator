@@ -1,8 +1,9 @@
-let num1 = 2;
-let operator = '/';
-let num2 = 2;
+let num1 = 0;
+let operator;
+let num2;
 
-
+const screen = document.querySelector('.screen');
+screen.value = num1
 
 function operate(num1, operator, num2) {
     if (operator === '+') {
@@ -36,5 +37,13 @@ const buttonsContainer = document.querySelector('.buttons-container')
 buttonsContainer.addEventListener(('click'), (e) => {
     
     if (e.target.innerText.length > 2) return
-    console.log(e.target.innerText)
+    const user_input = e.target.innerText;
+    updateValuesAndDisplay(user_input)
 })
+
+function updateValuesAndDisplay(userInput) {
+    if (num1 === 0 && operator === undefined && Number.isInteger(+userInput)) {
+        num1 = +userInput
+        screen.value = num1
+    } else if ()
+}
