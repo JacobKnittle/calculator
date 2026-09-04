@@ -2,6 +2,8 @@ let num1 = 2;
 let operator = '/';
 let num2 = 2;
 
+
+
 function operate(num1, operator, num2) {
     if (operator === '+') {
         return add(num1, num2)
@@ -30,4 +32,9 @@ function divide(num1, num2) {
     return num1 / num2
 }
 
-console.log(operate(num1, operator, num2))
+const buttonsContainer = document.querySelector('.buttons-container')
+buttonsContainer.addEventListener(('click'), (e) => {
+    
+    if (e.target.innerText.length > 2) return
+    console.log(e.target.innerText)
+})
