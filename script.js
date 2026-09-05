@@ -36,13 +36,17 @@ function divide(num1, num2) {
 const buttonsContainer = document.querySelector('.buttons-container')
 buttonsContainer.addEventListener(('click'), (e) => {
     
+    // blocks container eventlistening and just buttons allowed
     if (e.target.innerText.length > 2) return
     const user_input = e.target.innerText;
     updateValuesAndDisplay(user_input)
 })
 
 function updateValuesAndDisplay(userInput) {
+    // prevents screen overflow
     if (screen.value.length > 16) return
+
+    // calculation operation evaluation scenarios
     if (userInput === '=' && (num1 === undefined || num2 === undefined || operator === 'undefined')) return
     if (userInput === '=' && (num1 !== undefined && num2 !== undefined && operator !== undefined)) {
         num1 = operate(num1, operator, num2)
@@ -64,6 +68,7 @@ function updateValuesAndDisplay(userInput) {
         screen.value = num1
     }
 
+    // evaluating user input when clicking buttons based on values already stored
     if (num1 === 0 && operator === undefined && Number.isInteger(+userInput)) {
         num1 = +userInput
         screen.value = num1
@@ -74,6 +79,9 @@ function updateValuesAndDisplay(userInput) {
         operator = userInput;
         screen.value = `${num1} ${operator}`
     } else if (num1 !== undefined && operator !== undefined) {
+        // prevents double operator
+        if (['+', '-', '/', 'x'].includes(userInput)) return
+
         if (num2 === undefined) {
             num2 = userInput;
         } else {
