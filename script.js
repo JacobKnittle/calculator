@@ -49,6 +49,11 @@ function updateValuesAndDisplay(userInput) {
         num2 = undefined
         operator = undefined
         screen.value = num1
+    } else if (['+', '-', '/', 'x'].includes(userInput) && (num1 !== undefined && num2 !== undefined && operator !== undefined)) {
+        num1 = operate(num1, operator, num2)
+        num2 = undefined
+        operator = undefined
+        
     }
 
     if (num1 === 0 && operator === undefined && Number.isInteger(+userInput)) {
