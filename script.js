@@ -49,5 +49,16 @@ function updateValuesAndDisplay(userInput) {
     } else if (num1 !== 0 && operator === undefined && Number.isInteger(+userInput)) {
         num1 += userInput
         screen.value = num1
+    } else if (operator === undefined && num2 === undefined && (userInput === '/' || userInput === '+' || userInput === 'x' || userInput === '-')) {
+        operator = userInput;
+        screen.value = `${num1} ${operator}`
+    } else if (num1 !== undefined && operator !== undefined) {
+        if (num2 === undefined) {
+            num2 = userInput;
+        } else {
+            num2 += userInput
+        }
+        
+        screen.value = `${num1} ${operator} ${num2}`
     }
 }
