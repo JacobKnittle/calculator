@@ -1,11 +1,13 @@
 let num1 = 0;
 let operator;
 let num2;
+let operationCompleted = false;
 
 const screen = document.querySelector('.screen');
 screen.value = num1
 
 function operate(num1, operator, num2) {
+    
     if (operator === '+') {
         return add(num1, num2)
     } else if (operator === '-') {
@@ -18,14 +20,17 @@ function operate(num1, operator, num2) {
 }
 
 function add(num1, num2) {
+    
     return +num1 + +num2
 }
 
 function subtract(num1, num2) {
+    
     return num1 - num2
 }
 
 function multiply(num1, num2) {
+    
     return Math.round(num1 * num2 * 1000) / 1000
 }
 
@@ -53,11 +58,12 @@ function updateValuesAndDisplay(userInput) {
         num2 = undefined
         operator = undefined
         screen.value = num1
+        operationCompleted = true
     } else if (['+', '-', '/', 'x'].includes(userInput) && (num1 !== undefined && num2 !== undefined && operator !== undefined)) {
         num1 = operate(num1, operator, num2)
         num2 = undefined
         operator = undefined
-        
+        operationCompleted = true
     }
 
     // clear button
@@ -69,7 +75,13 @@ function updateValuesAndDisplay(userInput) {
     }
 
     // evaluating user input when clicking buttons based on values already stored
-    if (num1 === 0 && operator === undefined && Number.isInteger(+userInput)) {
+    if (operationCompleted === true && Number.isInteger(+userInput) && operator === undefined) {
+        num1 = +userInput
+        num2 = undefined
+        operator = undefined
+        operationCompleted = false
+        screen.value = num1
+    } else if (num1 === 0 && operator === undefined && Number.isInteger(+userInput)) {
         num1 = +userInput
         screen.value = num1
     } else if (num1 !== 0 && operator === undefined && Number.isInteger(+userInput)) {
@@ -90,4 +102,5 @@ function updateValuesAndDisplay(userInput) {
         
         screen.value = `${num1} ${operator} ${num2}`
     }
+    
 }
