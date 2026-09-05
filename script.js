@@ -56,6 +56,14 @@ function updateValuesAndDisplay(userInput) {
         
     }
 
+    // clear button
+    if (userInput === 'CE') {
+        num1 = 0
+        num2 = undefined
+        operator = undefined
+        screen.value = num1
+    }
+
     if (num1 === 0 && operator === undefined && Number.isInteger(+userInput)) {
         num1 = +userInput
         screen.value = num1
