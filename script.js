@@ -43,6 +43,7 @@ buttonsContainer.addEventListener(('click'), (e) => {
 
 function updateValuesAndDisplay(userInput) {
     if (screen.value.length > 16) return
+    if (userInput === '=' && (num1 === undefined || num2 === undefined || operator === 'undefined')) return
     if (num1 === 0 && operator === undefined && Number.isInteger(+userInput)) {
         num1 = +userInput
         screen.value = num1
